@@ -1,3 +1,3 @@
 # Personal Website
 
-URL: [milanstarcevic.com](milanstarcevic.com)
+URL: [milanstarcevic.com](http://milanstarcevic.com)

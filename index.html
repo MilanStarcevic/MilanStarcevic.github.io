@@ -1,234 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-124532800-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124532800-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+      gtag("config", "UA-124532800-1");
+    </script>
 
-    gtag("config", "UA-124532800-1");
-  </script>
+    <meta charset="utf-8" />
+    <meta name="description" content="Software Engineer .NET and WEB" />
+    <meta name="keywords" content="Software,Developer,.NET,JavaScript,App" />
+    <meta name="author" content="Milan Starcevic" />
+    <meta
+      name="google-site-verification"
+      content="VNTLDvFxWnTiCOMviN6RPa2JzHwD4QXNp98UpcIooys"
+    />
+    <meta
+      name="google-site-verification"
+      content="Ef-QqbQHxmJGYeIDYBvAWPXfr91IAbEXfspS-zgNPSQ"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Milan Starcevic</title>
 
-  <meta charset="utf-8" />
-  <meta name="description" content="Software Engineer .NET and WEB" />
-  <meta name="keywords" content="Software,Developer,.NET,JavaScript,App" />
-  <meta name="author" content="Milan Starcevic" />
-  <meta name="google-site-verification" content="VNTLDvFxWnTiCOMviN6RPa2JzHwD4QXNp98UpcIooys" />
-  <meta name="google-site-verification" content="Ef-QqbQHxmJGYeIDYBvAWPXfr91IAbEXfspS-zgNPSQ" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Milan Starcevic</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
-  <style>
-    @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+      body {
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+        margin: 8px;
+        user-select: none;
+        -ms-user-select: none;
+      }
 
-    body {
-      font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
-      margin: 8px;
-      user-select: none;
-      -ms-user-select: none;
-    }
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
 
-    a {
-      text-decoration: none;
-      color: #000000;
-    }
+      a:hover {
+        color: #808080;
+      }
 
-    a:hover {
-      color: #808080;
-    }
+      nav {
+        font-size: 2em;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: #000000 1px solid;
+      }
 
-    nav {
-      font-size: 2em;
-      display: flex;
-      justify-content: space-around;
-      border-bottom: #000000 1px solid;
-    }
+      .content {
+        max-width: 590px;
+        width: 100%;
+        margin: 0 auto;
+        cursor: default;
+      }
 
-    .content {
-      max-width: 590px;
-      width: 100%;
-      margin: 0 auto;
-      cursor: default;
-    }
+      h1,
+      h2,
+      h3 {
+        text-align: center;
+      }
 
-    h1,
-    h2,
-    h3 {
-      text-align: center;
-    }
+      .text {
+        text-align: justify;
+      }
 
-    .text {
-      text-align: justify;
-    }
+      .timeline {
+        text-align: left;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
 
-    .timeline {
-      text-align: left;
-      margin: 0 auto;
-      border-collapse: collapse;
-    }
+      .timeline i {
+        display: block;
+        font-style: normal;
+        font-size: 1.1em;
+      }
 
-    .timeline i {
-      display: block;
-      font-style: normal;
-      font-size: 1.1em;
-    }
+      .timeline td {
+        padding: 8px 0;
+      }
 
-    .timeline td {
-      padding: 8px 0;
-    }
+      .timeline td:nth-child(1) {
+        font-weight: bold;
+        padding-right: 8px;
+        width: 80px;
+        text-align: right;
+      }
 
-    .timeline td:nth-child(1) {
-      font-weight: bold;
-      padding-right: 8px;
-      width: 80px;
-      text-align: right;
-    }
+      .timeline td:nth-child(2) {
+        border-left: #000000 1px solid;
+        padding-left: 8px;
+      }
 
-    .timeline td:nth-child(2) {
-      border-left: #000000 1px solid;
-      padding-left: 8px;
-    }
+      .important {
+        font-weight: bold;
+      }
 
-    .important {
-      font-weight: bold;
-    }
+      .picture {
+        background-image: url("photo.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        max-width: 250px;
+        height: 250px;
+        margin: 0 auto 22px auto;
+      }
+    </style>
+  </head>
 
-    .picture {
-      background-image: url("photo.jpg");
-      background-repeat: no-repeat;
-      background-size: contain;
-      max-width: 250px;
-      height: 250px;
-      margin: 0 auto 22px auto;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="content">
-    <header>
-      <nav>
-        <a href="https://www.linkedin.com/in/milanstarcevic/" target="_blank">LinkedIn</a>
-        <a href="mailto:milan.starcevic@outlook.com">Email</a>
-      </nav>
-      <h1>Milan Starcevic</h1>
-    </header>
-    <section>
-      <div class="picture"></div>
-    </section>
-    <section>
-      <h2>Positions</h2>
-      <h3>Partner<br />Z&#252;hlke Group</h3>
-      <div class="text">
-        <p>
-          Shareholder of Zühlke Technology Group AG. The partners are united in their passion for the well-being of the company and through active participation in shareholder events steer Zühlke’s long-term future.
-        </p>
-      </div>
-      <h3>Principal Consultant & People Lead<br />Z&#252;hlke Group</h3>
-      <div class="text">
-        <p>
-          Take responsibility for particularly challenging solutions and in demanding organizational environments; closely interact with senior project managers, and customer representatives at all levels including senior management, and guide project teams; together with Head of Practices, actively develop new opportunities, lead technical and strategic initiatives in order to further improve engineers competencies and strengthen Zühlke's position on local and global market.
-      </div>
-    </section>
-    <section>
-      <h2>Timeline</h2>
-      <table class="timeline">
-        <tr class="important">
-          <td>May 2022 - current</td>
-          <td>Z&#252;hlke Group<i>People Lead</i></td>
-        </tr>
-        <tr class="important">
-          <td>Jul 2021 <br>- current</td>
-          <td>Z&#252;hlke Group<i>Partner</i></td>
-        </tr>
-        <tr class="important">
-          <td>Jan 2021 <br>- current</td>
-          <td>Z&#252;hlke Group<i>Principal Consultant</i></td>
-        </tr>
-        <tr>
-          <td>Jun 2019</td>
-          <td>Certified by Lean Change Management Association<i>Lean Change Agent - Explorer</i></td>
-        </tr>
-        <tr class="important">
-          <td>Jan 2018</td>
-          <td>Z&#252;hlke Group<i>Lead Software Engineer</i></td>
-        </tr>
-        <tr>
-          <td>Sep 2016</td>
-          <td>Certified by Microsoft<i>MCSD: App Builder</i></td>
-        </tr>
-        <tr>
-          <td>Sep 2016</td>
-          <td>Certified by Microsoft<i>MCSA: Web Applications</i></td>
-        </tr>
-        <tr class="important">
-          <td>Jul 2016</td>
-          <td>Z&#252;hlke Group<i>Expert Software Engineer</i></td>
-        </tr>
-        <tr>
-          <td>Mar 2016</td>
-          <td>
-            Certified by Singidunum University<i>Strength Deployment Inventory</i>
-          </td>
-        </tr>
-        <tr class="important">
-          <td>Jan 2015</td>
-          <td>Z&#252;hlke Group<i>Advanced Software Engineer</i></td>
-        </tr>
-        <tr>
-          <td>Apr 2014</td>
-          <td>Certified by Scrum.org<i>Professional Scrum Developer I</i></td>
-        </tr>
-        <tr>
-          <td>Feb 2014</td>
-          <td>
-            Certified by Microsoft<i>Microsoft Certified Professional</i>
-          </td>
-        </tr>
-        <tr class="important">
-          <td>Nov 2013</td>
-          <td>Z&#252;hlke Group<i>Junior Software Engineer</i></td>
-        </tr>
-        <tr class="important">
-          <td>2013</td>
-          <td>
-            School of Electrical and Computer Engineering of Applied Studies<i>Professional Master</i>
-          </td>
-        </tr>
-        <tr class="important">
-          <td>Sep 2012 - Oct 2013</td>
-          <td>MODERN OFFICE<i>Business Solutions Developer</i></td>
-        </tr>
-        <tr class="important">
-          <td>2012</td>
-          <td>
-            School of Electrical and Computer Engineering of Applied Studies<i>Bachelor of Applied Science</i>
-          </td>
-        </tr>
-        <tr class="important">
-          <td>Jul 2011 - Aug 2011</td>
-          <td>Institue Mihajlo Pupin<i>Intern C# Developer</i></td>
-        </tr>
-        <tr>
-          <td>Sep 2011 - Oct 2016</td>
-          <td>Movement for European Cultural Cooperation<i>Volunteer</i></td>
-        </tr>
-        <tr>
-          <td>2007</td>
-          <td>Finished High School</td>
-        </tr>
-        <tr>
-          <td>1988</td>
-          <td>Born</td>
-        </tr>
-      </table>
-    </section>
-  </div>
-</body>
-
+  <body>
+    <div class="content">
+      <header>
+        <nav>
+          <a href="https://www.linkedin.com/in/milanstarcevic/" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="mailto:milan.starcevic@outlook.com">Email</a>
+        </nav>
+        <h1>Milan Starcevic</h1>
+      </header>
+      <section>
+        <div class="picture"></div>
+      </section>
+      <section>
+        <h2>Positions</h2>
+        <h3>Partner<br />Z&#252;hlke Group</h3>
+        <div class="text">
+          <p>
+            Shareholder of Zühlke Technology Group AG. The partners are united
+            in their passion for the well-being of the company and through
+            active participation in shareholder events steer Zühlke’s long-term
+            future.
+          </p>
+        </div>
+        <h3>Principal Consultant & People Lead<br />Z&#252;hlke Group</h3>
+        <div class="text">
+          <p>
+            Principal Consultant ➤ Take responsibility for particularly
+            challenging solutions and in demanding organizational environments;
+            closely interact with senior project managers, and customer
+            representatives at all levels including senior management, and guide
+            project teams; together with Head of Practices, actively develop new
+            opportunities, lead technical and strategic initiatives in order to
+            further improve engineers competencies and strengthen Zühlke's
+            position on local and global market.
+          </p>
+          <p>
+            People Lead ➤ Line manager and career coach of more than 10 Software
+            Engineers in Zühlke.
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2>Timeline</h2>
+        <table class="timeline">
+          <tr class="important">
+            <td>May 2022 - current</td>
+            <td>Z&#252;hlke Group<i>People Lead</i></td>
+          </tr>
+          <tr class="important">
+            <td>Jul 2021 <br />- current</td>
+            <td>Z&#252;hlke Group<i>Partner</i></td>
+          </tr>
+          <tr class="important">
+            <td>Jan 2021 <br />- current</td>
+            <td>Z&#252;hlke Group<i>Principal Consultant</i></td>
+          </tr>
+          <tr>
+            <td>Jun 2019</td>
+            <td>
+              Certified by Lean Change Management Association<i
+                >Lean Change Agent - Explorer</i
+              >
+            </td>
+          </tr>
+          <tr class="important">
+            <td>Jan 2018</td>
+            <td>Z&#252;hlke Group<i>Lead Software Engineer</i></td>
+          </tr>
+          <tr>
+            <td>Sep 2016</td>
+            <td>Certified by Microsoft<i>MCSD: App Builder</i></td>
+          </tr>
+          <tr>
+            <td>Sep 2016</td>
+            <td>Certified by Microsoft<i>MCSA: Web Applications</i></td>
+          </tr>
+          <tr class="important">
+            <td>Jul 2016</td>
+            <td>Z&#252;hlke Group<i>Expert Software Engineer</i></td>
+          </tr>
+          <tr>
+            <td>Mar 2016</td>
+            <td>
+              Certified by Singidunum University<i
+                >Strength Deployment Inventory</i
+              >
+            </td>
+          </tr>
+          <tr class="important">
+            <td>Jan 2015</td>
+            <td>Z&#252;hlke Group<i>Advanced Software Engineer</i></td>
+          </tr>
+          <tr>
+            <td>Apr 2014</td>
+            <td>Certified by Scrum.org<i>Professional Scrum Developer I</i></td>
+          </tr>
+          <tr>
+            <td>Feb 2014</td>
+            <td>
+              Certified by Microsoft<i>Microsoft Certified Professional</i>
+            </td>
+          </tr>
+          <tr class="important">
+            <td>Nov 2013</td>
+            <td>Z&#252;hlke Group<i>Junior Software Engineer</i></td>
+          </tr>
+          <tr class="important">
+            <td>2013</td>
+            <td>
+              School of Electrical and Computer Engineering of Applied Studies<i
+                >Professional Master</i
+              >
+            </td>
+          </tr>
+          <tr class="important">
+            <td>Sep 2012 - Oct 2013</td>
+            <td>MODERN OFFICE<i>Business Solutions Developer</i></td>
+          </tr>
+          <tr class="important">
+            <td>2012</td>
+            <td>
+              School of Electrical and Computer Engineering of Applied Studies<i
+                >Bachelor of Applied Science</i
+              >
+            </td>
+          </tr>
+          <tr class="important">
+            <td>Jul 2011 - Aug 2011</td>
+            <td>Institue Mihajlo Pupin<i>Intern C# Developer</i></td>
+          </tr>
+          <tr>
+            <td>Sep 2011 - Oct 2016</td>
+            <td>Movement for European Cultural Cooperation<i>Volunteer</i></td>
+          </tr>
+          <tr>
+            <td>2007</td>
+            <td>Finished High School</td>
+          </tr>
+          <tr>
+            <td>1988</td>
+            <td>Born</td>
+          </tr>
+        </table>
+      </section>
+    </div>
+  </body>
 </html>

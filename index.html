@@ -292,7 +292,8 @@
     </div>
 
     <script>
-      const db = await (await fetch("/urls.json")).json();
+      const dbResponse = await fetch("/urls.json");
+      const db = await dbResponse.json();
       const url = db[window.location.hash?.substring(1)];
       if (url) {
         document.getElementById("redirect").style.display = "block";

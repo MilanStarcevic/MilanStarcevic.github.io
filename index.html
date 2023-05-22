@@ -40,6 +40,10 @@
         margin: 0 auto 22px auto;
       }
 
+      #redirect-name {
+        font-weight: bold;
+      }
+
       body {
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
         margin: 8px;
@@ -146,11 +150,11 @@
           <h2>Article Redirect</h2>
           <p>
             This page is a redirect to an article
-            <span id="redirect-name"></span>. Click 👉
+            "<span id="redirect-name"></span>". Click 👉
             <a id="redirect-url"
               href="/"
               >here</a
-            >
+            > 👈
             to be redirected.
           </p>
         </div>
@@ -289,8 +293,8 @@
 
     <script>
       const db = await (await fetch("/urls.json")).json();
-      const url = db[window.location.hash?.substring(1)] ?? "/";
-      if (url !== "/") {
+      const url = db[window.location.hash?.substring(1)];
+      if (url) {
         document.getElementById("redirect").style.display = "block";
         document.getElementById("redirect-name").innerText = url.name;
         document.getElementById("redirect-url").href = url.url;

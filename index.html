@@ -34,7 +34,7 @@
     <style>
       @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
-      #redirect {
+      .redirect {
         display: none;
         text-align: center;
         margin: 0 auto 22px auto;
@@ -130,7 +130,15 @@
   <body>
     <div class="content">
       <header>
-        <nav>
+        <div class="redirect">
+          <h2>Article Redirect</h2>
+          <p>
+            Click 👉 <a id="redirect-url" href="/">here</a> 👈 for my article "<span
+              id="redirect-name"
+            ></span>".
+          </p>          
+        </div>
+        <nav class="not-redirect">
           <a href="https://www.linkedin.com/in/milanstarcevic/" target="_blank"
             >LinkedIn</a
           >
@@ -140,22 +148,13 @@
           >
           <a href="mailto:milan.starcevic@outlook.com">Email</a>
         </nav>
-        <h1>Milan Starcevic</h1>
+        
+        <h1><div class="redirect">About me </div>Milan Starcevic</h1>
       </header>
       <section>
         <div class="picture"></div>
       </section>
       <section>
-        <div id="redirect">
-          <h2>Article Redirect</h2>
-          <p>
-            This page is a redirect to an article "<span
-              id="redirect-name"
-            ></span
-            >". Click 👉 <a id="redirect-url" href="/">here</a> 👈 to be
-            redirected.
-          </p>
-        </div>
         <h2>Positions</h2>
         <h3>Partner<br />Z&#252;hlke Group</h3>
         <div class="text">
@@ -296,7 +295,8 @@
           .then((db) => {
             const url = db[window.location.search.substring(1)];
             if (url) {
-              document.getElementById("redirect").style.display = "block";
+              document.querySelectorAll(".redirect").forEach(e => e.style.display = "block");
+              document.querySelectorAll(".not-redirect").forEach(e => e.style.display = "none");
               document.getElementById("redirect-name").innerText = url.name;
               document.getElementById("redirect-url").href = url.url;
             }

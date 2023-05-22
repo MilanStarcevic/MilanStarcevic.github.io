@@ -133,10 +133,9 @@
         <div class="redirect">
           <h2>Article Redirect</h2>
           <p>
-            Click 👉 <a id="redirect-url" href="/">here</a> 👈 for my article "<span
-              id="redirect-name"
-            ></span>".
-          </p>          
+            Click 👉 <a id="redirect-url" href="/">here</a> 👈 for my article
+            "<span id="redirect-name"></span>".
+          </p>
         </div>
         <nav class="not-redirect">
           <a href="https://www.linkedin.com/in/milanstarcevic/" target="_blank"
@@ -148,8 +147,11 @@
           >
           <a href="mailto:milan.starcevic@outlook.com">Email</a>
         </nav>
-        
-        <h1><div class="redirect">About me </div>Milan Starcevic</h1>
+
+        <h1>
+          <div class="redirect">About me</div>
+          Milan Starcevic
+        </h1>
       </header>
       <section>
         <div class="picture"></div>
@@ -295,8 +297,12 @@
           .then((db) => {
             const url = db[window.location.search.substring(1)];
             if (url) {
-              document.querySelectorAll(".redirect").forEach(e => e.style.display = "block");
-              document.querySelectorAll(".not-redirect").forEach(e => e.style.display = "none");
+              document
+                .querySelectorAll(".redirect")
+                .forEach((e) => (e.style.display = "block"));
+              document
+                .querySelectorAll(".not-redirect")
+                .forEach((e) => (e.style.display = "none"));
               document.getElementById("redirect-name").innerText = url.name;
               document.getElementById("redirect-url").href = url.url;
             }

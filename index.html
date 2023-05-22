@@ -290,16 +290,18 @@
     </div>
 
     <script>
-      const dbResponse = fetch("/urls.json")
-      .then(response => response.json())
-      .then(db => {
-        const url = db[window.location.hash?.substring(1)];
-        if (url) {
-          document.getElementById("redirect").style.display = "block";
-          document.getElementById("redirect-name").innerText = url.name;
-          document.getElementById("redirect-url").href = url.url;
-        }
-      });
+      if (window.location.hash) {
+        const dbResponse = fetch("/urls.json")
+          .then((response) => response.json())
+          .then((db) => {
+            const url = db[window.location.hash?.substring(1)];
+            if (url) {
+              document.getElementById("redirect").style.display = "block";
+              document.getElementById("redirect-name").innerText = url.name;
+              document.getElementById("redirect-url").href = url.url;
+            }
+          });
+      }
     </script>
   </body>
 </html>

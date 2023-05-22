@@ -290,11 +290,11 @@
     </div>
 
     <script>
-      if (window.location.hash) {
+      if (window.location.search) {
         const dbResponse = fetch("/urls.json")
           .then((response) => response.json())
           .then((db) => {
-            const url = db[window.location.hash?.substring(1)];
+            const url = db[window.location.search.substring(1)];
             if (url) {
               document.getElementById("redirect").style.display = "block";
               document.getElementById("redirect-name").innerText = url.name;

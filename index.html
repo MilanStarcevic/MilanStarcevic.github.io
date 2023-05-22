@@ -34,6 +34,12 @@
     <style>
       @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
+      #redirect {
+        display: none;
+        text-align: center;
+        margin: 0 auto 22px auto;
+      }
+
       body {
         font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
         margin: 8px;
@@ -124,7 +130,10 @@
           <a href="https://www.linkedin.com/in/milanstarcevic/" target="_blank"
             >LinkedIn</a
           >
-          <a href="https://www.linkedin.com/in/milanstarcevic/recent-activity/posts/">Articles</a>
+          <a
+            href="https://www.linkedin.com/in/milanstarcevic/recent-activity/posts/"
+            >Articles</a
+          >
           <a href="mailto:milan.starcevic@outlook.com">Email</a>
         </nav>
         <h1>Milan Starcevic</h1>
@@ -133,6 +142,18 @@
         <div class="picture"></div>
       </section>
       <section>
+        <div id="redirect">
+          <h2>Article Redirect</h2>
+          <p>
+            This page is a redirect to an article
+            <span id="redirect-name"></span>. Click 👉
+            <a id="redirect-url"
+              href="/"
+              >here</a
+            >
+            to be redirected.
+          </p>
+        </div>
         <h2>Positions</h2>
         <h3>Partner<br />Z&#252;hlke Group</h3>
         <div class="text">
@@ -265,5 +286,15 @@
         </table>
       </section>
     </div>
+
+    <script>
+      const db = await (await fetch("/urls.json")).json();
+      const url = db[window.location.hash?.substring(1)] ?? "/";
+      if (url !== "/") {
+        document.getElementById("redirect").style.display = "block";
+        document.getElementById("redirect-name").innerText = url.name;
+        document.getElementById("redirect-url").href = url.url;
+      }
+    </script>
   </body>
 </html>

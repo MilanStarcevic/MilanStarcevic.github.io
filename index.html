@@ -292,7 +292,7 @@
 
     <script>
       if (window.location.search) {
-        const dbResponse = fetch("/urls.json")
+        const dbResponse = fetch("/urls.json", { cache: "no-store" })
           .then((response) => response.json())
           .then((db) => {
             const url = db[window.location.search.substring(3)];

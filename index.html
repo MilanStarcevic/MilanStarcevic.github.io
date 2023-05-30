@@ -295,7 +295,7 @@
         const dbResponse = fetch("/urls.json")
           .then((response) => response.json())
           .then((db) => {
-            const url = db[window.location.search.substring(1)];
+            const url = db[window.location.search.substring(3)];
             if (url) {
               document
                 .querySelectorAll(".redirect")

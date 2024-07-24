@@ -112,12 +112,38 @@
       }
 
       .picture {
-        background-image: url("photo.jpg");
         background-repeat: no-repeat;
         background-size: contain;
         max-width: 250px;
-        height: 250px;
         margin: 0 auto 22px auto;
+      }
+
+      .my-pic {
+        background-image: url("photo.jpg");
+        height: 250px;
+      }
+
+      .book-pic {
+        margin-top: 20px;
+        background-image: url("book-cover.jpg");
+        @media (min-width: 610px) {
+          height: 340px;
+        }
+
+        @media (max-width: 610px) {
+          height: 397px;
+        }
+      }
+
+      @media (min-width: 610px) {
+        .side-by-side {
+          display: flex;
+        }
+        .left-side-book-pic {
+          min-width: 200px;
+          margin-right: 20px;
+          max-height: 397px;
+        }
       }
     </style>
   </head>
@@ -150,7 +176,7 @@
         </h1>
       </header>
       <section>
-        <div class="picture"></div>
+        <div class="picture my-pic"></div>
       </section>
       <section>
         <h2>About Me</h2>
@@ -186,9 +212,9 @@
       </section>
       <hr />
       <section>
-        <div style="display: flex">
-          <div style="margin-top: 20px"><img src="book-cover.png" /></div>
-          <div style="margin-left: 20px" class="text">
+        <div class="side-by-side">
+          <div class="picture book-pic left-side-book-pic"></div>
+          <div class="text">
             <p>
               Read my book
               <b

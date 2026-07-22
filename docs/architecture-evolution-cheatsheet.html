@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Architecture Evolution Cheat Sheet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --panel:#ffffff;
+    --panel-line:#e2e2e2;
+    --grid:#f4f4f4;
+    --ink:#1a1a1a;
+    --ink-dim:#5c5c5c;
+    --ink-faint:#9a9a9a;
+    --teal:#0f766e;
+    --amber:#b45309;
+    --rule:#d8d8d8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    padding:48px 40px 64px;
+  }
+  .wrap{max-width:1220px;margin:0 auto;}
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom:1px solid var(--panel-line);
+    padding-bottom:20px;
+    margin-bottom:32px;
+  }
+  .title-block h1{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:26px;
+    letter-spacing:0.5px;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .title-block p{
+    margin:0;
+    color:var(--ink-dim);
+    font-size:13.5px;
+    max-width:560px;
+    line-height:1.55;
+  }
+  .legend{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink-dim);
+    text-align:right;
+    line-height:1.9;
+  }
+  .legend .k{color:var(--teal);}
+  .legend .w{color:var(--ink-faint);}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+  }
+  @media (max-width:820px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:6px;
+    padding:18px 20px 20px;
+    position:relative;
+  }
+  .panel::before{
+    content:attr(data-idx);
+    position:absolute;
+    top:14px;
+    right:16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-faint);
+  }
+  .panel h2{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px dashed var(--panel-line);
+  }
+
+  /* tree */
+  ul.tree{
+    list-style:none;
+    margin:0;
+    padding-left:0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    line-height:1.45;
+  }
+  ul.tree ul{
+    list-style:none;
+    margin:6px 0 6px 0;
+    padding-left:0;
+  }
+  ul.tree li{
+    position:relative;
+    padding:4px 0 4px 16px;
+  }
+  ul.tree > li{padding-left:0;}
+  ul.tree li:not(.root)::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:1px;
+    height:100%;
+    background:var(--rule);
+  }
+  ul.tree li:not(.root)::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:11px;
+    width:11px;
+    height:1px;
+    background:var(--rule);
+  }
+  ul.tree li:not(.root):last-child::before{
+    height:12px;
+  }
+  ul.tree li.root{font-weight:500;color:var(--ink);}
+
+  .node{color:var(--ink);}
+  .fn{
+    color:var(--amber);
+    font-weight:700;
+    margin-left:3px;
+    font-size:11px;
+  }
+  .why{
+    font-family:'Inter',sans-serif;
+    font-size:10.5px;
+    font-weight:400;
+    color:var(--ink-faint);
+    line-height:1.4;
+    margin-top:2px;
+  }
+  .two-root ul.tree > li + li{margin-top:12px;padding-top:12px;border-top:1px dashed var(--panel-line);}
+
+  footer{
+    margin-top:26px;
+    background:var(--panel);
+    border:1px solid var(--panel-line);
+    border-radius:6px;
+    padding:18px 22px;
+  }
+  footer h3{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 12px;
+  }
+  footer ol{
+    margin:0;
+    padding-left:20px;
+    columns:2;
+    column-gap:36px;
+  }
+  @media (max-width:820px){ footer ol{columns:1;} }
+  footer li{
+    font-size:12.5px;
+    color:var(--ink-dim);
+    line-height:1.55;
+    margin-bottom:9px;
+    break-inside:avoid;
+  }
+  footer li b{color:var(--ink);font-weight:500;}
+  footer li .fn{margin-left:0;margin-right:3px;}
+
+  .rule-line{
+    display:block;
+    font-size:11px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--ink-faint);
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid var(--panel-line);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="title-block">
+      <h1>ARCHITECTURE EVOLUTION // FIELD GUIDE</h1>
+      <p>Eight independent dimensions of system design. Parent → child reads as migration affinity, not taxonomy. Each node's small caption is the trigger: the condition that makes moving to it worthwhile.</p>
+    </div>
+    <div class="legend">
+      <div><span class="k">──</span> migration path</div>
+      <div><span class="k">┈┈</span> independent root</div>
+      <div class="w">gray text = trigger condition</div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="panel" data-idx="01">
+      <h2>System decomposition</h2>
+      <ul class="tree">
+        <li class="root node">Monolith<div class="why">Default starting point — no scaling pain yet</div>
+          <ul>
+            <li>Layered monolith<div class="why">Need basic separation of concerns in one codebase</div>
+              <ul>
+                <li>Modular monolith<div class="why">Teams stepping on each other inside one codebase</div>
+                  <ul>
+                    <li>Macroservices<div class="why">Need independently deployable units, ops still simple</div>
+                      <ul><li>Microservices <span class="fn">*</span><div class="why">Need per-team ownership and independent scaling</div></li></ul>
+                    </li>
+                    <li>Distributed modules / service-based arch.<div class="why">Need to distribute modules before splitting teams</div>
+                      <ul><li>Microservices <span class="fn">*</span><div class="why">Need per-team ownership and independent scaling</div></li></ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="02">
+      <h2>Internal code structure</h2>
+      <ul class="tree two-root">
+        <li class="root node">Unstructured code<div class="why">Prototype stage — structure would slow you down</div>
+          <ul>
+            <li>Layered architecture<div class="why">Want technical separation: UI, logic, data</div>
+              <ul>
+                <li>Dependency-inverted core <span class="fn">†</span><div class="why">Business logic must stay independent of frameworks</div>
+                  <ul><li class="node">Hexagonal / Onion / Clean Architecture<div class="why">Need swappable adapters and a testable core</div></li></ul>
+                </li>
+              </ul>
+            </li>
+            <li>Feature-oriented organization<div class="why">Most changes should touch one feature, not many layers</div>
+              <ul><li>Vertical Slice Architecture<div class="why">Want each feature self-contained end to end</div></li></ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="03">
+      <h2>Domain modelling</h2>
+      <ul class="tree">
+        <li class="root node">CRUD<div class="why">Data in, data out — no real business rules</div>
+          <ul>
+            <li>Transaction Script<div class="why">Simple procedural rules, low domain complexity</div>
+              <ul>
+                <li>Domain Model<div class="why">Rules getting tangled, need behavior on objects</div>
+                  <ul>
+                    <li>Rich Domain Model<div class="why">Need to make invalid state impossible to represent</div>
+                      <ul><li>Domain-Driven Design<div class="why">Complex domain, need shared language with experts</div></li></ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="04">
+      <h2>Communication</h2>
+      <ul class="tree">
+        <li class="root node">Direct calls<div class="why">Single process — no network hop needed</div>
+          <ul>
+            <li>Remote synchronous calls<div class="why">Need cross-process call with an immediate answer</div>
+              <ul>
+                <li class="node">RPC / gRPC<div class="why">Internal service-to-service, need speed and typed contracts</div></li>
+                <li class="node">REST<div class="why">Need a widely interoperable, public-facing HTTP API</div></li>
+              </ul>
+            </li>
+            <li>Asynchronous messaging<div class="why">Want to decouple sender and receiver timing</div>
+              <ul>
+                <li>Queues<div class="why">Need reliable delivery to exactly one consumer</div></li>
+                <li>Publish-subscribe<div class="why">Multiple consumers each need the same event</div></li>
+                <li>Event streams<div class="why">Need an ordered, replayable event history</div>
+                  <ul><li>Stream processing<div class="why">Need continuous computation over live event flow</div></li></ul>
+                </li>
+                <li>Event-driven architecture <span class="fn">‡</span><div class="why">Want system-wide reactive behavior, mechanism-agnostic</div>
+                  <ul>
+                    <li class="node">Queue-based event handling<div class="why">Reactive, but need guaranteed single processing</div></li>
+                    <li class="node">Publish-subscribe event handling<div class="why">Reactive with several independent reactors</div></li>
+                    <li class="node">Stream-based event handling<div class="why">Reactive, needs ordering and replay</div></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="05">
+      <h2>Data ownership</h2>
+      <ul class="tree">
+        <li class="root node">Shared database<div class="why">Fast to build, tight coupling is acceptable for now</div>
+          <ul>
+            <li>Schema per module<div class="why">Want logical separation without splitting services yet</div>
+              <ul>
+                <li>Database per service<div class="why">Need true autonomy: independent schema, scaling, deploys</div>
+                  <ul>
+                    <li class="node">API composition<div class="why">Occasional cross-service query, low volume is fine</div></li>
+                    <li class="node">Replicated projections<div class="why">Need fast local reads, some staleness acceptable</div></li>
+                    <li class="node">CQRS read models<div class="why">Need read shapes optimized per use case</div></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="06">
+      <h2>State modelling</h2>
+      <ul class="tree two-root">
+        <li class="root node">Unified current-state model<div class="why">Reads and writes have similar shape and load</div>
+          <ul>
+            <li>Command-query separation<div class="why">Read and write demands are starting to diverge</div>
+              <ul>
+                <li>CQRS<div class="why">Read and write scale or model very differently</div>
+                  <ul>
+                    <li class="node">Shared persistence<div class="why">Want CQRS benefits without extra operational overhead</div></li>
+                    <li>Separate read/write persistence<div class="why">Need to scale read and write stores independently</div>
+                      <ul><li>Event-sourced write model <span class="fn">§</span><div class="why">Need a write-side audit trail alongside CQRS</div></li></ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="root node">Append-only change history<div class="why">Need full history of how state changed over time</div>
+          <ul>
+            <li>Event sourcing <span class="fn">§</span><div class="why">Need to reconstruct past state or debug via replay</div>
+              <ul><li>Event sourcing with CQRS<div class="why">Need both an audit trail and fast optimized reads</div></li></ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="07">
+      <h2>Distributed transactions</h2>
+      <ul class="tree">
+        <li class="root node">Local transaction<div class="why">All relevant data lives in one datastore</div>
+          <ul>
+            <li>Distributed workflow<div class="why">A transaction now spans multiple services or stores</div>
+              <ul>
+                <li class="node">Two-phase commit<div class="why">Need strict atomicity, can tolerate blocking</div></li>
+                <li>Saga<div class="why">Need eventual consistency without distributed locks</div>
+                  <ul>
+                    <li class="node">Orchestration<div class="why">Need central visibility and control of the workflow</div></li>
+                    <li class="node">Choreography<div class="why">Want services to react independently, no coordinator</div></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel" data-idx="08">
+      <h2>UI decomposition</h2>
+      <ul class="tree">
+        <li class="root node">Server-rendered UI<div class="why">Simple app — SEO and simplicity matter most</div>
+          <ul>
+            <li>Client-enhanced server-rendered UI<div class="why">Need some interactivity without a full SPA rewrite</div>
+              <ul>
+                <li>SPA<div class="why">Need rich, app-like client-side interaction</div>
+                  <ul>
+                    <li>Modular SPA<div class="why">Single app growing too large for one team</div>
+                      <ul><li>Micro-frontends<div class="why">Multiple teams need independently deployable UI pieces</div></li></ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <h3>Footnotes</h3>
+    <ol>
+      <li><span class="fn">*</span><b>Microservices</b> — two paths converge on the same end state, but macroservice decomposition vs. direct module distribution leave different intermediate boundaries behind.</li>
+      <li><span class="fn">†</span><b>Hexagonal / Onion / Clean</b> — one conceptual family built on dependency inversion around a core, expressed through different vocabulary.</li>
+      <li><span class="fn">§</span><b>Event sourcing</b> — a persistence strategy, not a CQRS subtype. An event-sourced write model is a common combination, not a requirement.</li>
+      <li><span class="fn">‡</span><b>Event-driven architecture</b> — a style implementable via queues, pub/sub, event streams, or combinations of them.</li>
+    </ol>
+    <span class="rule-line">Parent → child = migration affinity / plausible low-refactoring path, not strict taxonomy · siblings = conceptually independent choices · multiple roots and repeated nodes are intentional where dimensions are genuinely independent or cross-cutting</span>
+  </footer>
+
+</div>
+</body>
+</html>
